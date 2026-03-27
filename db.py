@@ -17,18 +17,27 @@ class Db():
     __conn = None
 
     def __init__(self):
+        """
+        Initialize the db object
+        """
         self.cursor = None
 
     def connect(self):
+        """
+        connects to the database
+        """
         try:
             self.__conn = psycopg2.connect(
-                f"postgresql://{user}:{passwd}@{host}/neondb?sslmode=require&channel_binding=require")
+                f"postgresql://{user}:{passwd}@{host}/neondb?sslmode=require&channel_binding=require") # connect using a connection screen
             print("Connected to the database")
             self.cursor = self.__conn.cursor()
         except (Exception, psycopg2.DatabaseError) as err:
             print(f"Error connecting to the database: {err}")
     
     def execute(self, query, *args):
+        """
+        wraps the execute method of the cursor object
+        """
         try:
             if any in args:
                 self.cursor.execute(query, tuple(args))
@@ -40,6 +49,9 @@ class Db():
         return result
 
     def close(self):
+        """
+        Closes the connections to the database
+        """
         self.cursor.close()
         self.__conn.close()
         print("Connection closed")
