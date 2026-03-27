@@ -9,6 +9,7 @@ class Product():
         """
         Initializes a new product
         """
+        # if id is not provided, generates a new id for the item
         if not id:
             self.id = f"{str(uuid4())}-{category}"
         else:
@@ -25,4 +26,7 @@ class Product():
         return self.id < other.id
     
     def __str__(self):
+        """
+        defines the string representation of the class
+        """
         return f"{self.id} {self.name}"
