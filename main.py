@@ -51,9 +51,8 @@ def main():
     d_base = Db()
 
     d_base.connect()
-    product_query = d_base.execute("SELECT * FROM products")
+    product_query = d_base.execute("SELECT * FROM products") # returns a list of tuples
     products = [Product(product[0], product[1], product[4]) for product in product_query]
-    #print(d_base.cursor.fetchall())
 
     sequential_search(products, "da4986e1-3181-4091-ae5f-69b7a0bc5247-kitchenware")
 
@@ -63,17 +62,6 @@ def main():
     binary_search(products, "da4986e1-3181-4091-ae5f-69b7a0bc5247-kitchenware")
 
     d_base.close()
-
-    #all_products = {
-    #    "furniture": ["Sofa Couch", "Office Workstation", "Shelf Unit", "Bed Frame", "Dinning Table"],
-    #    "hometextile": ["Bed Sheets & Set", "Bath Towel", "Cushion Cover", "Area Rug", "Kitchen Linen"],
-    #    "kitchenware": ["Chef's Knife", "Cutting Board", "Grater", "Mixing Bowl", "Spatula"],
-    #    "decor": ["Cactus Plant", "Throw Pillow", "Decorative Bedroom Mirrow", "Ceramic Vase", "Glass Vase"]
-    #}
-
-    #product_list = [Product(product, category) for category, products in all_products.items() for product in products]
-    #for product in product_list:
-    #    print(product.id, product.name)
 
 
 if __name__ == "__main__":
